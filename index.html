@@ -1,71 +1,27 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>Airsoft Terrain Finder</title>
 
-<style>
+style.css
 
-body{
-    margin:0;
-    padding:20px;
-    background:#121212;
-    color:white;
-    font-family:Arial,sans-serif;
-}
+<link
+rel="on
 
-h1{
-    text-align:center;
-}
-
-#gpsBtn{
-    width:100%;
-    padding:15px;
-    border:none;
-    border-radius:10px;
-    background:#00a86b;
-    color:white;
-    font-size:16px;
-    cursor:pointer;
-}
-
-#status{
-    margin:15px 0;
-    text-align:center;
-}
-
-.card{
-    background:#1f1f1f;
-    padding:15px;
-    margin-top:15px;
-    border-radius:12px;
-}
-
-.card h2{
-    margin-top:0;
-}
-
-.routeBtn{
-    width:100%;
-    padding:12px;
-    border:none;
-    border-radius:8px;
-    background:#2196f3;
-    color:white;
-    cursor:pointer;
-    margin-top:10px;
-}
-
-.distance{
-    color:#90ee90;
-    margin:10px 0;
-}
-
-</style>
+<meta
+name="theme-color"
+content="#121212">
 
 </head>
+
 <body>
 
 <h1>🎯 Airsoft Terrain Finder</h1>
@@ -78,147 +34,8 @@ h1{
 
 <div id="terrains"></div>
 
-<script>
-
-let userLat = null;
-let userLon = null;
-
-const terrains = [
-
-{
-name:"CAT Airsoft",
-address:"Rue de Bavery 13 Bis, 6200 Châtelet"
-},
-{
-name:"Infantry44",
-address:"Rue de la Gazéification, 7350 Thulin"
-},
-{
-name:"Grizzly Squad",
-address:"Avenue du Champs de Bataille 587, 7012 Flénu"
-},
-{
-name:"L'Intemporelle",
-address:"Gand'Route 142, Jemappes"
-},
-{
-name:"Skulls Airsoft",
-address:"Chemin de Cognelée, Namur"
-},
-{
-name:"Yakuzas Airsoft",
-address:"Rue J. Kinnaer, 4280 Grand-Hallet"
-},
-{
-name:"Fort Knox",
-address:"Donderheide 3, 2570 Lier"
-},
-{
-name:"Muchas Maracas",
-address:"680 Pont Malin, 59111 Bouchain"
-},
-{
-name:"ADES",
-address:"Ennetières-en-Weppes"
-},
-{
-name:"UTC Seclin",
-address:"Seclin"
-}
-
-];
-
-function afficherTerrains(){
-
-const container=document.getElementById("terrains");
-
-container.innerHTML="";
-
-terrains.forEach(terrain=>{
-
-container.innerHTML += `
-<div class="card">
-
-<h2>${terrain.name}</h2>
-
-<p>📍 ${terrain.address}</p>
-
-<div class="distance">
-Distance disponible après activation GPS
-</div>
-
-<button
-class="routeBtn"
-onclick="ouvrirItineraire('${terrain.address}')">
-
-🚗 Itinéraire
-
-</button>
-
-</div>
-`;
-
-});
-
-}
-
-function ouvrirItineraire(destination){
-
-if(userLat && userLon){
-
-window.open(
-`https://www.google.com/maps/dir/?api=1&origin=${userLat},${userLon}&destination=${encodeURIComponent(destination)}`
-);
-
-} else {
-
-window.open(
-`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(destination)}`
-);
-
-}
-
-}
-
-document
-.getElementById("gpsBtn")
-.addEventListener("click",()=>{
-
-if(!navigator.geolocation){
-
-document.getElementById("status").innerHTML =
-"❌ GPS non disponible";
-
-return;
-
-}
-
-navigator.geolocation.getCurrentPosition(
-
-(position)=>{
-
-userLat = position.coords.latitude;
-userLon = position.coords.longitude;
-
-document.getElementById("status").innerHTML =
-"✅ Position GPS enregistrée";
-
-},
-
-()=>{
-
-document.getElementById("status").innerHTML =
-"❌ Autorisation GPS refusée";
-
-}
-
-);
-
-});
-
-afficherTerrains();
-
-</script>
+app.jsscript>
 
 </body>
+
 </html>

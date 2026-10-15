@@ -1,4 +1,3 @@
-
 let userLat = null;
 let userLon = null;
 
@@ -162,4 +161,55 @@ window.open(
 }
 else{
 
-window.
+window.open(
+`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(destination)}`
+);
+
+}
+
+}
+
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
+
+document
+.getElementById("gpsBtn")
+.addEventListener("click",()=>{
+
+navigator.geolocation.getCurrentPosition(
+
+(position)=>{
+
+userLat =
+position.coords.latitude;
+
+userLon =
+position.coords.longitude;
+
+document.getElementById(
+"status"
+).innerHTML =
+"✅ Position GPS enregistrée";
+
+afficherTerrains();
+
+},
+
+()=>{
+
+document.getElementById(
+"status"
+).innerHTML =
+"❌ GPS refusé";
+
+}
+
+);
+
+});
+
+afficherTerrains();
+
+}
+);

@@ -5,8 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Airsoft Terrain Finder</title>
     
+    <!-- Lien vers le fichier CSS -->
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Lien vers le Manifest PWA pour l'installation sur mobile -->
     <link rel="manifest" href="manifest.json">
+    
     <meta name="theme-color" content="#121212">
 </head>
 <body>
@@ -17,8 +21,26 @@
     </button>
     
     <div id="status"></div>
+    
+    <!-- C'est ici que le JavaScript va injecter les cartes des terrains -->
     <div id="terrains"></div>
     
+    <!-- Lien corrigé vers le fichier JavaScript -->
     <script src="app.js"></script>
+    
+    <!-- Script pour enregistrer le Service Worker (nécessaire pour le mode hors-ligne) -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                .then(registration => {
+                    console.log('Service Worker enregistré avec succès.', registration.scope);
+                })
+                .catch(error => {
+                    console.log('Erreur lors de l\'enregistrement du Service Worker', error);
+                });
+            });
+        }
+    </script>
 </body>
 </html>

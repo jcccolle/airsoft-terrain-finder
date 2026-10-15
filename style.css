@@ -1,1 +1,61 @@
+body{
+    margin:0;
+    padding:20px;
+    background:#121212;
+    color:white;
+    font-family:Arial,sans-serif;
+}
 
+h1{
+    text-align:center;
+    color:#00d084;
+}
+
+#gpsBtn{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    background:#00a86b;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+#status{
+    margin:15px 0;
+    text-align:center;
+}
+
+.card{
+    background:#1f1f1f;
+    margin-top:15px;
+    padding:15px;
+    border-radius:12px;
+    box-shadow:0 2px 5px rgba(0,0,0,.3);
+}
+
+.card h2{
+    margin-top:0;
+}
+
+.distance{
+    color:#90ee90;
+    font-weight:bold;
+    margin:10px 0;
+}
+
+.info{
+    margin:5px 0;
+}
+
+.routeBtn{
+    width:100%;
+    border:none;
+    padding:12px;
+    border-radius:8px;
+    background:#2196f3;
+    color:white;
+    cursor:pointer;
+    font-size:15px;
+}

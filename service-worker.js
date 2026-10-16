@@ -1,4 +1,4 @@
-const CACHE_NAME = 'airsoft-terrain-v1';
+const CACHE_NAME = 'airsoft-terrain-v2';
 const ASSETS_TO_CACHE = [
     './',
     './index.html',
@@ -7,8 +7,9 @@ const ASSETS_TO_CACHE = [
     './manifest.json'
 ];
 
-// Installation : Mise en cache des fichiers
+// Installation : Mise en cache initiale
 self.addEventListener('install', (event) => {
+    self.skipWaiting();
     event.waitUntil(
         caches.open(CACHE_NAME).then((cache) => {
             return cache.addAll(ASSETS_TO_CACHE);
@@ -16,7 +17,7 @@ self.addEventListener('install', (event) => {
     );
 });
 
-// Activation : Nettoyage des anciens caches
+// Activation : Suppression des anciens caches
 self.addEventListener('activate', (event) => {
     event.waitUntil(
         caches.keys().then((cacheNames) => {
@@ -27,15 +28,27 @@ self.addEventListener('activate', (event) => {
                     }
                 })
             );
-        })
+        }).then(() => self.clients.claim())
     );
 });
 
-// Récupération des ressources (Fonctionnement hors-ligne)
+// Stratégie Network-First : Cherche sur Internet d'abord, bascule sur le cache si hors-ligne
 self.addEventListener('fetch', (event) => {
     event.respondWith(
-        caches.match(event.request).then((response) => {
-            return response || fetch(event.request);
-        })
+        fetch(event.request)
+            .then((networkResponse) => {
+                // Si la connexion réussit, on met à jour le cache local
+                if (networkResponse && networkResponse.status === 200) {
+                    const responseToCache = networkResponse.clone();
+                    caches.open(CACHE_NAME).then((cache) => {
+                        cache.put(event.request, responseToCache);
+                    });
+                }
+                return networkResponse;
+            })
+            .catch(() => {
+                // Si pas de réseau, on prend ce qu'il y a en cache
+                return caches.match(event.request);
+            })
     );
 });

@@ -1,1 +1,22 @@
-
+{
+  "short_name": "AirsoftFinder",
+  "name": "Airsoft Terrain Finder",
+  "description": "Localisation des terrains d'airsoft en Belgique et Nord de la France",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#121212",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://via.placeholder.com/192/00a86b/ffffff?text=🎯",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://via.placeholder.com/512/00a86b/ffffff?text=🎯",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

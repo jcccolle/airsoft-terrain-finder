@@ -23,8 +23,8 @@ const terrains = [
         pa: "330-350 FPS",
         assaut: "350 FPS",
         dmr: "400 FPS",
-        sniper: "N/A",
-        grammage: "Non spécifié",
+        sniper: "2.00 joules",
+        grammage: "0.25 gr",
         lat: 50.4285,
         lon: 3.7413
     },
